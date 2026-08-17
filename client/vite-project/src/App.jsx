@@ -172,8 +172,22 @@ const closeModel = ()=>{
       />
 
      {/*User Table */}
-     <UserTable/>
-     <UserModel isOpen={isModelOpen} onClose={closeModel}/>
+     <UserTable
+     users={users}
+     onEdit={openModel}
+     onDelete={handleDelete}
+     currentPage={currentPage}
+     totalPages={totalPages}
+     onPageChange={setCurrentPage}/>
+
+     <UserModel 
+     isOpen={isModelOpen} 
+     onClose={closeModel}
+     formData={formData}
+     setFormData={setFormData}
+     onSubmit ={handleSubmit}
+     loading ={loading}
+     status={status}/>
 
 
     </main>
