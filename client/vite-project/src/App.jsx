@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Users,Plus} from "lucide-react";
+import { Users,Plus, User, Check, X} from "lucide-react";
 import StatsCard from "./components/StatsCard";
 import SearchBar from "./components/SearchBar";
 import UserTable from "./components/UserTable";
@@ -127,11 +127,49 @@ const closeModel = ()=>{
     <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
         {/* Stats */}
-      <StatsCard/>
+      <StatsCard  
+      title="Total Users" 
+      value={{number: stats.total}}
+      icon ={<Users/>}
+      bgIcon ="bg-indigo-500"
+      iconColor="text-white"
+      gradient="from-indigo-900 to-indigo-700"
+      />
+      <StatsCard  
+      title="Active Users" 
+      value={{number: stats.active}}
+      icon ={<Check/>}
+      bgIcon ="bg-green-500"
+      iconColor="text-white"
+      gradient="from-green-900 to-green-700"
+      />
+      <StatsCard  
+      title="Inactive Users" 
+      value={{number: stats.inactive}}
+      icon ={<X />}
+      bgIcon ="bg-red-500"
+      iconColor="text-white"
+      gradient="from-red-900 to-red-700"
+      />
       </div>
 
      {/* Search */}
-     <SearchBar/>
+     <SearchBar 
+     value={searchTerm} 
+     onChange={setSearchTerm} 
+     onClear={() =>{
+      setSearchTerm("");
+      setCurrentPage(1);
+      }}
+      itemsPerPage={itemsPerpage}
+      onItemsPerPageChange={(val) =>{
+        setItemsPerPage(Number(val));
+        setCurrentPage(1);
+      }}
+      
+      currentPage={currentPage}
+      totalUsers={totalUsers}
+      />
 
      {/*User Table */}
      <UserTable/>
