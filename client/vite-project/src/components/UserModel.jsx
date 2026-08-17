@@ -1,6 +1,7 @@
 import React from "react";
 import { Check, X } from "lucide-react";
-function UserModel(){
+function UserModel({isOpen, onClose}){
+    if(!isOpen) return null;
     return (
         <div className="fixed inset-0 bg-black/80 flex items-center
         justify-center p-4 z-50">
@@ -9,7 +10,9 @@ function UserModel(){
                 <div className="flex justify-between items-center p-6 border-b
                 border-gray-800">
                     <h2 className="text-2xl font-bold text-white">Add New User</h2>
-                    <button className="text-gray-400 hover:text-white transition-all">
+                    <button className="text-gray-400 hover:text-white transition-all"
+                    onClick={onClose}>
+                        
                         <X size={24}/>
                     </button>
                 </div>
